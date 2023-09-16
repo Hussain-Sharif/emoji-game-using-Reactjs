@@ -9,9 +9,9 @@ class WinOrLoseCard extends Component {
   }
 
   render() {
-    const {emojisList, totalScore, topScore} = this.props
+    const {emojisList, totalScore} = this.props
     const l = emojisList.length
-    const checkEquality = topScore === l
+    const checkEquality = l === totalScore
     return (
       <div className="result-card">
         {checkEquality ? (
@@ -44,7 +44,7 @@ class WinOrLoseCard extends Component {
             <div className="result-2">
               <h1 className="r-status">You Lose</h1>
               <p className="r-mention">Score</p>
-              <p className="r-score">{topScore}/12</p>
+              <p className="r-score">{totalScore}/12</p>
               <button onClick={this.again} className="play-Btn" type="button">
                 Play Again
               </button>
