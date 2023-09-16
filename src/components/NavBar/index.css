@@ -4,11 +4,23 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  padding-left: 35px;
+  padding-right: 35px;
+}
+@media screen and (max-width: 767px) {
+  .navbar {
+    padding: 0px;
+  }
 }
 .flex-change {
   justify-content: flex-start;
+}
+@media screen and (max-width: 767px) {
+  .flex-change {
+    justify-content: center;
+  }
 }
 .nav-logo-div {
   display: flex;
@@ -23,6 +35,11 @@
 .logo-head {
   color: #ffffff;
   font-weight: bolder;
+}
+@media screen and (max-width: 767px) {
+  .logo-head {
+    margin-left: 5px;
+  }
 }
 .score-div {
   display: flex;
