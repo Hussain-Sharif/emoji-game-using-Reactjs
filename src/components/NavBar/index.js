@@ -13,7 +13,7 @@ class NavBar extends Component {
             src="https://assets.ccbp.in/frontend/react-js/game-logo-img.png"
             className="logo"
           />
-          <p className="logo-head">Emoji Game</p>
+          <h1 className="logo-head">Emoji Game</h1>
         </div>
         {activeGame ? (
           <div className="score-div">
