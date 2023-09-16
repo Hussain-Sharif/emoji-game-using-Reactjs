@@ -4,8 +4,6 @@ import NavBar from '../NavBar/index'
 import EmojiCard from '../EmojiCard/index'
 import WinOrLoseCard from '../WinOrLoseCard/index'
 
-
-
 // Write your code here.
 
 class EmojiGame extends Component {
@@ -33,14 +31,13 @@ class EmojiGame extends Component {
           }
         }
         return {
-          totalScore: 0,
+          totalScore: totalScore + 1,
           topScore: totalScore > topScore ? totalScore + 1 : topScore,
           clickedEmojis: added,
           activeGame: false,
         }
       }
       return {
-        totalScore: 0,
         topScore: totalScore > topScore ? totalScore : topScore,
         activeGame: false,
         clickedEmojis: [],
@@ -49,7 +46,7 @@ class EmojiGame extends Component {
   }
 
   playAgain = () => {
-    this.setState({activeGame: true})
+    this.setState({activeGame: true, totalScore: 0, clickedEmojis: []})
   }
 
   render() {
