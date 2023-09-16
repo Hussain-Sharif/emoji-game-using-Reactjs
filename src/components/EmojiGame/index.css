@@ -24,7 +24,7 @@
     width: 100%;
   }
   .main-bg {
-    height: auto;
+    /* height: auto; */
     overflow-y: scroll;
   }
 }
@@ -38,4 +38,5 @@
   justify-content: center;
   align-items: center;
   /* border: red solid 1px; */
+  padding: 16px;
 }
