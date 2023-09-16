@@ -1,13 +1,14 @@
 /* Write your code here. */
 .main-bg {
-  background-image: linear-gradient(to left, #9796f0, #fbc7d4, #8f6767);
+  background-image: linear-gradient(to left, #717097, #fbc7d4, #867373);
   background-size: cover;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   height: 100vh;
 }
+
 .playground {
-  width: 45%;
+  width: 40%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -15,13 +16,22 @@
   align-items: center;
   list-style-type: none;
   padding-left: 0px;
-  height: 75%;
+  /* height: 75%; */
   /* border: red solid 1px; */
+}
+@media screen and (max-width: 768px) {
+  .playground {
+    width: 100%;
+  }
+  .main-bg {
+    height: auto;
+    overflow-y: scroll;
+  }
 }
 .card {
   background-color: transparent;
   border: none;
-  height: 80%;
+  /* height: 80%; */
   width: 100%;
   display: flex;
   flex-direction: column;
