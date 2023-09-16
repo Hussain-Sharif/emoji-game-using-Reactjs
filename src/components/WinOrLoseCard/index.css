@@ -1,1 +1,63 @@
 /* Write your code here. */
+.result-card {
+  background-color: #9a9aee;
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border: #c4c4fa solid 4px;
+  border-radius: 30px;
+  padding: 5px;
+}
+@media screen and (max-width: 767px) {
+  .result-card {
+    width: 99%;
+  }
+}
+.result-1 {
+  order: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.r-img {
+  max-width: 190px;
+  max-height: 295px;
+}
+.result-2 {
+  order: 0;
+  text-align: center;
+}
+.r-status {
+  color: #ffffff;
+  font-size: 45px;
+  font-weight: bolder;
+}
+.r-mention {
+  color: #ffffff;
+  font-size: 30px;
+}
+.r-score {
+  color: #6a59ff;
+  font-weight: bolder;
+  font-size: 35px;
+}
+.play-Btn {
+  color: #000;
+  background-color: #ffce27;
+  outline: none;
+  cursor: pointer;
+  font-size: 30px;
+  border: none;
+  border-radius: 18px;
+  padding: 18px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+@media screen and (max-width: 767px) {
+  .play-Btn {
+    font-size: 22px;
+  }
+}
