@@ -12,6 +12,7 @@ class EmojiGame extends Component {
     topScore: 0,
     activeGame: true,
     clickedEmojis: [],
+    isInfo: false,
   }
 
   clickEmoji = id => {
@@ -49,9 +50,16 @@ class EmojiGame extends Component {
     this.setState({activeGame: true, totalScore: 0, clickedEmojis: []})
   }
 
+  displayDes = () => {
+    this.setState(prev => {
+      const {isInfo} = prev
+      return {isInfo: !isInfo}
+    })
+  }
+
   render() {
     let {emojisList} = this.props
-    const {totalScore, topScore, activeGame} = this.state
+    const {totalScore, topScore, activeGame, isInfo} = this.state
     emojisList =
       totalScore > 0 ? emojisList.sort(() => Math.random() - 0.5) : emojisList
     return (
@@ -63,15 +71,54 @@ class EmojiGame extends Component {
         />
         <div className="card">
           {activeGame ? (
-            <ul className="playground">
-              {emojisList.map(each => (
-                <EmojiCard
-                  key={each.id}
-                  each={each}
-                  clickEmoji={this.clickEmoji}
-                />
-              ))}
-            </ul>
+            <>
+              <div className="head-Div">
+                <h1 className="head">Click~Unique</h1>
+                {isInfo ? (
+                  <button
+                    className="des-btn"
+                    type="button"
+                    onClick={this.displayDes}
+                  >
+                    <span className="emo-imgg">&#129321;</span>
+                  </button>
+                ) : (
+                  <button
+                    className="des-btn"
+                    type="button"
+                    onClick={this.displayDes}
+                  >
+                    <span className="emo-imgg">&#129320;</span>
+                  </button>
+                )}
+              </div>
+              <ul className={`description  ${!isInfo ? 'change-des' : null}`}>
+                {isInfo ? (
+                  <>
+                    <li>
+                      <p className="des-para">Click each Emoji Excatly Once</p>
+                    </li>
+                    <li>
+                      <p className="des-para">
+                        For Each Click, Emojis get shuffled Randomly
+                      </p>
+                    </li>
+                    <li>
+                      <p className="des-para">Try to score 12/12 :)</p>
+                    </li>
+                  </>
+                ) : null}
+              </ul>
+              <ul className="playground">
+                {emojisList.map(each => (
+                  <EmojiCard
+                    key={each.id}
+                    each={each}
+                    clickEmoji={this.clickEmoji}
+                  />
+                ))}
+              </ul>
+            </>
           ) : (
             <WinOrLoseCard
               emojisList={emojisList}
