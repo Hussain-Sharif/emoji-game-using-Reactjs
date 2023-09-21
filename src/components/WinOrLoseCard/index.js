@@ -9,7 +9,7 @@ class WinOrLoseCard extends Component {
   }
 
   render() {
-    const {emojisList, totalScore} = this.props
+    const {emojisList, totalScore, gameCount} = this.props
     const l = emojisList.length
     const checkEquality = l === totalScore
     return (
@@ -43,6 +43,9 @@ class WinOrLoseCard extends Component {
             </div>
             <div className="result-2">
               <h1 className="r-status">You Lose</h1>
+              {gameCount === 0 ? (
+                <p className="timer-out-status">Time-Out</p>
+              ) : null}
               <p className="r-mention">Score</p>
               <p className="r-score">{totalScore}/12</p>
               <button onClick={this.again} className="play-Btn" type="button">
