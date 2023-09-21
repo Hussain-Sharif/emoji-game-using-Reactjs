@@ -12,7 +12,8 @@
 }
 @media screen and (max-width: 767px) {
   .result-card {
-    width: 99%;
+    width: 100%;
+    padding: 10px;
   }
 }
 .result-1 {
@@ -23,8 +24,8 @@
   align-items: center;
 }
 .r-img {
-  max-width: 190px;
-  max-height: 295px;
+  max-width: 170px;
+  max-height: 275px;
 }
 .result-2 {
   order: 0;
@@ -60,4 +61,9 @@
   .play-Btn {
     font-size: 22px;
   }
+}
+.timer-out-status {
+  color: #f11a7b;
+  font-weight: bolder;
+  margin: 4px;
 }
