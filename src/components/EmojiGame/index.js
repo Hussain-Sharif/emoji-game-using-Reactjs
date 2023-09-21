@@ -7,21 +7,24 @@ import WinOrLoseCard from '../WinOrLoseCard/index'
 // Write your code here.
 
 class EmojiGame extends Component {
-  state = {
-    totalScore: 0,
-    topScore: 0,
-    activeGame: true,
-    clickedEmojis: [],
-    isInfo: false,
-    startGame: false,
-    // timerMin:12,
-    // timerSec:0
+  constructor(props) {
+    super(props)
+    this.state = {
+      emojisList: props.emojisList,
+      totalScore: 0,
+      topScore: 0,
+      activeGame: true,
+      clickedEmojis: [],
+      isInfo: false,
+      startGame: false,
+      gameCount: 15,
+    }
   }
 
   clickEmoji = id => {
     this.setState(prev => {
-      const {totalScore, topScore, clickedEmojis} = prev
-      const {emojisList} = this.props
+      const {totalScore, topScore, clickedEmojis, emojisList} = prev
+      //   const {emojisList} = this.props
       const len = emojisList.length // length of original List
       const check = clickedEmojis.includes(id) // Cheking :}
 
@@ -32,15 +35,18 @@ class EmojiGame extends Component {
           return {
             totalScore: totalScore + 1,
             clickedEmojis: added,
+            emojisList: emojisList.sort(() => Math.random() - 0.5),
           }
         }
         return {
           totalScore: totalScore + 1,
           topScore: totalScore > topScore ? totalScore + 1 : topScore,
           clickedEmojis: added,
+          emojisList: emojisList.sort(() => Math.random() - 0.5),
           activeGame: false,
         }
       }
+      clearInterval(this.timerID)
       return {
         topScore: totalScore > topScore ? totalScore : topScore,
         activeGame: false,
@@ -50,7 +56,13 @@ class EmojiGame extends Component {
   }
 
   playAgain = () => {
-    this.setState({activeGame: true, totalScore: 0, clickedEmojis: []})
+    this.setState({
+      activeGame: true,
+      totalScore: 0,
+      clickedEmojis: [],
+      gameCount: 15,
+    })
+    this.timerID = setInterval(this.startCount, 1000)
   }
 
   displayDes = () => {
@@ -60,24 +72,46 @@ class EmojiGame extends Component {
     })
   }
 
-  activateGame = () => {
+  startCount = () => {
     this.setState(prev => {
-      const {startGame} = prev
-      return {startGame: !startGame}
+      const {gameCount, totalScore} = prev
+      if (gameCount > 0) {
+        return {gameCount: gameCount - 1}
+      }
+      clearInterval(this.timerID)
+      return {activeGame: false, topScore: totalScore}
     })
   }
 
+  activateGame = () => {
+    const {startGame} = this.state
+    if (startGame === false) {
+      this.timerID = setInterval(this.startCount, 1000)
+    }
+    this.setState({startGame: true})
+  }
+
   render() {
-    let {emojisList} = this.props
-    const {totalScore, topScore, activeGame, startGame, isInfo} = this.state
-    emojisList =
-      totalScore > 0 ? emojisList.sort(() => Math.random() - 0.5) : emojisList
+    // let {emojisList} = this.props
+    const {
+      totalScore,
+      topScore,
+      activeGame,
+      startGame,
+      gameCount,
+      isInfo,
+      emojisList,
+    } = this.state
+    // emojisList =
+    //   totalScore > 0 ? emojisList.sort(() => Math.random() - 0.5) : emojisList
     return (
       <div className="main-bg">
         <NavBar
           totalScore={totalScore}
           topScore={topScore}
           activeGame={activeGame}
+          startGame={startGame}
+          gameCount={gameCount}
         />
         {!startGame ? (
           <div className="card">
@@ -113,7 +147,7 @@ class EmojiGame extends Component {
                     </p>
                   </li>
                   <li>
-                    <p className="des-para">Try to score 12/12 :)</p>
+                    <p className="des-para">Try to score 12 in 15 Seconds</p>
                   </li>
                 </>
               ) : null}
@@ -155,6 +189,7 @@ class EmojiGame extends Component {
                 emojisList={emojisList}
                 topScore={topScore}
                 totalScore={totalScore}
+                gameCount={gameCount}
                 playAgain={this.playAgain}
               />
             )}
