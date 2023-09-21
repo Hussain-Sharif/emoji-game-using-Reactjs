@@ -4,7 +4,9 @@ import './index.css'
 
 class NavBar extends Component {
   render() {
-    const {totalScore, topScore, activeGame} = this.props
+    const {totalScore, topScore, activeGame, startGame, gameCount} = this.props
+    console.log('before', gameCount, startGame)
+    console.log('after', gameCount, startGame)
     return (
       <nav className={`navbar ${activeGame ? null : 'flex-change'} `}>
         <div className="nav-logo-div">
@@ -16,10 +18,18 @@ class NavBar extends Component {
           <h1 className="logo-head">Emoji Game</h1>
         </div>
         {activeGame ? (
-          <div className="score-div">
-            <p className="score-details">Score: {totalScore}</p>
-            <p className="score-details">Top Score: {topScore}</p>
-          </div>
+          <>
+            {startGame ? (
+              <div className="counter-Div">
+                <h1 className="counter-display">{gameCount}</h1>
+              </div>
+            ) : null}
+
+            <div className="score-div">
+              <p className="score-details">Score: {totalScore}</p>
+              <p className="score-details">Top Score: {topScore}</p>
+            </div>
+          </>
         ) : null}
       </nav>
     )
