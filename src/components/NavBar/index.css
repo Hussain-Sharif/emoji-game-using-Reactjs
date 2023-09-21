@@ -51,3 +51,16 @@
   color: #ffffff;
   margin-right: 15px;
 }
+.counter-Div {
+  border: #aee2ff solid 2px;
+  border-radius: 50px;
+  background-color: transparent;
+  padding: 10px;
+  margin: 10px;
+}
+.counter-display {
+  color: #b799ff;
+  font-weight: bolder;
+  font-size: 20px;
+  margin: 5px;
+}
